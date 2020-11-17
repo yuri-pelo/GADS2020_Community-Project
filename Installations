@@ -11,6 +11,75 @@ Update and upgrade the system repositories
 
 <# sudo apt update -y && sudo apt upgrade -y>
 
+Install Apache
+
+<# sudo apt install apache2>
+
+Next, start Apache2 HTTP server by running
+
+<# sudo systemctl start apache2>
+
+Verify the status of the server
+
+<# sudo systemctl status apache2>
+
+## Step 2: Install MySQL and PHP
+
+Install PHP and MySQL database for storing the data.
+
+<# sudo apt install mysql-client mysql-server php libapache2-mod-php>
+
+Start and ensure that our database is up and running.
+
+To start and enable the MySQL database on boot run:
+
+<# systemctl start mysql>
+<# systemct enable mysql>
+
+Next, secure the database. Run:
+
+<# sudo mysql_secure_installation>
+
+You will be prompted to answer a series of questions:
+
+<Enter current password for root (enter for none): Just press the Enter>
+<Set root password? [Y/n]: Y>
+<New password: Enter password>
+<Re-enter new password: Repeat password>
+<Remove anonymous users? [Y/n]: Y>
+<Disallow root login remotely? [Y/n]: Y>
+<Remove test database and access to it? [Y/n]:  Y>
+<Reload privilege tables now? [Y/n]:  Y>
+
+The databse instance is successfully installed and secured. Now make a few modifications to the default mysql configuration file. Using your preferred text editor, open the file below.
+
+<# vim /etc/mysql/mariadb.conf.d/50-server.cnf>
+
+In the Mysqld section, append the lines below
+
+<default_storage_engine = innodb>
+<innodb_file_per_table = 1>
+<innodb_file_format = Barracuda>
+<innodb_large_prefix = 1>
+
+In order to save my.cnf using the editor, press the Esc (Escape) key, type the following in sequence which will save :w then close the editor :q
+
+<:w>
+<:q>
+
+Save the changes and exit your text editor.
+
+Restart the MySQL database to effect the changes
+
+# sudo systemctl restart mysql
+
+# Step 3: Install additional software
+
+Moodle requires installation of extra software packages. Using the command below:
+
+<# sudo apt install graphviz aspell ghostscript clamav php7.4-pspell php7.4-curl php7.4-gd php7.4-intl php7.4-mysql php7.4-xml php7.4-xmlrpc php7.4-ldap php7.4-zip php7.4-soap php7.4-mbstring>
+
+
 
 
 
