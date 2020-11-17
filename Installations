@@ -1,0 +1,17 @@
+# Moodle Installation on Ubuntu 20.04
+
+Moodle is a free learning management system. Moodle requires the LAMP stack in order to function, which means Linux, Apache, MySQL/Mariadb and PHP should be installed.
+
+Virtual Machine Details:
+*****
+
+## Step 1: Install Apache HTTP web server
+
+Update and upgrade the system repositories
+
+<# sudo apt update -y && sudo apt upgrade -y>
+
+
+
+
+
